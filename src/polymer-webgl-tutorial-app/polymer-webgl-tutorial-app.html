@@ -1,0 +1,83 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/google-map/google-map.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
+<link rel="import" href="../../bower_components/polymer-webgl-visualization/point-overlay.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-slider/paper-slider.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+
+<dom-module id="polymer-webgl-tutorial-app">
+  <template>
+    <style is="custom-style" include="iron-flex iron-flex-layout iron-flex-alignment">
+      :host {
+        display: block;
+      }
+
+      .container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+      }
+
+      .map {
+        width: 100%;
+        height: 500px;
+      }
+
+      paper-card {
+        height: 100px;
+        width: 200px;
+      }
+
+      paper-slider {
+        --paper-slider-knob-color: var(--paper-red-500);
+        --paper-slider-active-color: var(--paper-red-500);
+      }
+
+    </style>
+
+    <iron-ajax auto handle-as="json"
+      url="../../bower_components/polymer-webgl-visualization/tornadoes-1950-2014.json"
+      last-response="{{data}}">
+    </iron-ajax>
+
+    <h2>My Map App!</h2>
+    <div class="container layout vertical">
+      <div class="map">
+        <google-map map="{{map}}" latitude="38.6" longitude="-95.8" zoom="5"
+          styles='[{"stylers":[{"saturation":-85}]},{"featureType":"water","stylers":[{"lightness":-20}]}]'>
+        </google-map>
+        <point-overlay map="[[map]]" uniform="{{uniforms}}" data="{{data}}">
+        </point-overlay>
+      </div>
+      <div class="slider">
+        <paper-card elevation="1">
+          <paper-slider min="0" max="100" value="1" immediateValue="{{uniforms.pointSize}}">
+          </paper-slider>
+        </paper-card>
+      </div>
+    </div>
+
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PolymerWebglTutorialApp extends Polymer.Element {
+      static get is() { return 'polymer-webgl-tutorial-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'polymer-webgl-tutorial-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PolymerWebglTutorialApp.is, PolymerWebglTutorialApp);
+  </script>
+</dom-module>

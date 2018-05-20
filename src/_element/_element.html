@@ -1,0 +1,32 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="polymer-webgl-tutorial-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class PolymerWebglTutorialApp extends Polymer.Element {
+      static get is() { return 'polymer-webgl-tutorial-app'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'polymer-webgl-tutorial-app'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PolymerWebglTutorialApp.is, PolymerWebglTutorialApp);
+  </script>
+</dom-module>

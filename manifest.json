@@ -1,0 +1,7 @@
+{
+  "name": "polymer-webgl-tutorial",
+  "short_name": "polymer-webgl-tutorial",
+  "description": "https://codelabs.developers.google.com/codelabs/polymer-webgl/index.html#1",
+  "start_url": "/",
+  "display": "standalone"
+}
